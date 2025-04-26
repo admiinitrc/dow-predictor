@@ -66,12 +66,12 @@ def calculate_dowry():
     score += 1 if subprofession else 0
     score += {"PhD": 12, "Postgraduate": 9, "Graduate": 7, "Diploma": 5, "Other": 3}[highest_education]
     score += {"Tier 1": 3, "Tier 2": 2, "Tier 3": 1, "No College": 0}[college_tier]
-    score += 5 * (np.log1p(monthly_salary) / 10)
+    score += 10 * (np.log1p(monthly_salary) / 10)
     score += 5 if vehicle_ownership != "None" else 0
-    score += 4 * (np.log1p(investments) / 12)
+    score += 7 * (np.log1p(investments) / 12)
     score += 4 if location == "Urban" else (2 if location == "Semi-Urban" else 1)
     score -= 4 * (np.log1p(pending_loan) / 10)
-    score += 6 * (np.log1p(property_worth) / 12)
+    score += 10 * (np.log1p(property_worth) / 12)
     score -= number_of_dependents * 6
 
     dowry = base + (score * 1_00_000)
